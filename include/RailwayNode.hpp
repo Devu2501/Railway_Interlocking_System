@@ -6,8 +6,8 @@
 
 using namespace std;
 
-//different types of railway nodes
-enum class RailwayNodeType
+
+enum RailwayNodeType
 {
    SWITCH=0,
    SIGNAL,
@@ -28,7 +28,7 @@ protected:
     
     RailwayNodeType type;
 
-    vector<Track*> connectedTracks; //Vector to store connected tracks
+    vector<Track*> connectedTracks;
 
 public:
 
@@ -46,7 +46,7 @@ public:
 
     void addTrack(Track* track);
 
-    virtual void printNodeInfo() const = 0; //Pure virtual function to print node information  
+    virtual void printNodeInfo() const = 0;   
 
 
 };
