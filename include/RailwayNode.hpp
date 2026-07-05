@@ -13,7 +13,8 @@ enum class RailwayNodeType
    SIGNAL,
    PLATFORM,
    ENTRY,
-   EXIT
+   EXIT,
+   JUNCTION
 };
 
 class Track; //Forward declaration of Track class
