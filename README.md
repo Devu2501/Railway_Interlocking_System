@@ -237,4 +237,127 @@ Some key design decisions made during development:
 - **Breadth-First Search (BFS)** was selected as the routing algorithm because all track segments are treated with equal cost.
 - The **Interlocking** module is responsible only for route safety, switch alignment, and track locking.
 - A dedicated **Simulator** class coordinates user interaction without embedding application logic inside `main()`.
+
+---
+
+## ⚙️ Build & Run
+
+### Prerequisites
+
+- C++17 or later
+- GCC / Clang compiler
+- Git
+
+### Clone the Repository
+
+```bash
+git clone https://github.com/<your-username>/Railway-Interlocking-System.git
+
+cd Railway-Interlocking-System
+```
+
+### Build
+
+Compile all source files using your preferred compiler.
+
+Example using **g++**:
+
+```bash
+g++ -std=c++17 src/*.cpp -Iinclude -o RailwaySimulator
+```
+
+### Run
+
+```bash
+./RailwaySimulator
+```
+
+---
+
+## ▶️ Using the Simulator
+
+After launching the application, the following menu is displayed:
+
+```text
+=====================================
+ Railway Interlocking Simulator
+=====================================
+
+1. Show Station Layout
+2. Find Route
+3. Establish Route
+4. Dispatch Train
+5. Release Route
+6. Show Switch Status
+7. Show Track Status
+8. Exit
+```
+
+Typical simulation flow:
+
+1. View the station layout.
+2. Select a destination and compute a route.
+3. Establish the route through the interlocking system.
+4. Dispatch a train.
+5. Observe switch positions and locked tracks.
+6. Release the route after the journey.
+
+---
+
+## 💻 Sample Output
+
+```text
+Finding Route...
+
+Entry
+↓
+J1
+↓
+SW1
+↓
+SW2
+↓
+Platform1
+
+Route Established Successfully.
+
+Switch Positions
+
+SW1 : REVERSE
+SW2 : NORMAL
+
+Locked Tracks
+
+Track1 : LOCKED
+Track2 : LOCKED
+Track4 : LOCKED
+Track5 : LOCKED
+
+Rajdhani Express starting journey...
+
+Rajdhani Express is at Entry
+Rajdhani Express is at J1
+Rajdhani Express is at SW1
+Rajdhani Express is at SW2
+Rajdhani Express is at Platform1
+
+Rajdhani Express reached destination.
+
+Route Released Successfully.
+```
+
+---
+
+## 🧪 Test Scenarios
+
+The simulator has been tested for the following scenarios:
+
+- ✅ Route establishment from **Entry → Platform 1**
+- ✅ Route establishment from **Entry → Platform 2**
+- ✅ Route establishment from **Entry → Exit**
+- ✅ Automatic switch configuration
+- ✅ Track locking during active routes
+- ✅ Route rejection when a required track is occupied or already locked
+- ✅ Route release after train traversal
+
 ---
