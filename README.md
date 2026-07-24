@@ -34,7 +34,7 @@ The project is designed to demonstrate the practical application of **Object-Ori
 
 ---
 
-# 🏗️ System Architecture
+## 🏗️ System Architecture
 
 The simulator follows a modular object-oriented architecture where each component is responsible for a single aspect of the railway interlocking system.
 
@@ -80,7 +80,7 @@ The **Simulator** coordinates the complete workflow, while each module is respon
 
 ---
 
-# 🚉 Station Layout
+## 🚉 Station Layout
 
 The railway station in **Version 1.0** is represented as a graph consisting of an **Entry**, **Exit**, **two Junctions**, **two Switches**, **two Platforms**, and the connecting tracks.
 
@@ -99,7 +99,7 @@ Entry
                   
 ```
 
-### Switch Configuration
+#### Switch Configuration
 
 | Switch | Normal Position | Reverse Position |
 |---------|-----------------|------------------|
@@ -110,7 +110,7 @@ During route establishment, the **Interlocking** module automatically configures
 
 ---
 
-# 🔄 System Workflow
+## 🔄 System Workflow
 
 The simulator follows the workflow shown below when a train is dispatched.
 
