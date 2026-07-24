@@ -30,3 +30,127 @@ The project is designed to demonstrate the practical application of **Object-Ori
 - **Algorithms:** Breadth-First Search (BFS), Graph Traversal
 - **Libraries:** C++ Standard Template Library (STL)
 - **Version Control:** Git & GitHub
+
+
+---
+
+# 🏗️ System Architecture
+
+The simulator follows a modular object-oriented architecture where each component is responsible for a single aspect of the railway interlocking system.
+
+```text
+                    +----------------------+
+                    |      Simulator       |
+                    +----------+-----------+
+                               |
+          +--------------------+--------------------+
+          |                    |                    |
+          v                    v                    v
+   +--------------+    +---------------+    +---------------+
+   |   Station    |    |  PathFinder   |    | Interlocking  |
+   +------+-------+    +-------+-------+    +-------+-------+
+          |                      |                    |
+          |                      |                    |
+          v                      v                    |
+   +--------------+       +--------------+           |
+   | RailwayGraph |------>|    Route     |<----------+
+   +------+-------+       +--------------+
+          |
+          |
+          v
+   +-------------------------------+
+   | Railway Infrastructure        |
+   |                               |
+   | • Entry                       |
+   | • Exit                        |
+   | • Junctions                   |
+   | • Switches                    |
+   | • Platforms                   |
+   | • Tracks                      |
+   +-------------------------------+
+                               |
+                               |
+                               v
+                         +-----------+
+                         |   Train   |
+                         +-----------+
+```
+
+The **Simulator** coordinates the complete workflow, while each module is responsible for a specific task. This modular design improves readability, maintainability, and makes future extensions straightforward.
+
+---
+
+# 🚉 Station Layout
+
+The railway station in **Version 1.0** is represented as a graph consisting of an **Entry**, **Exit**, **two Junctions**, **two Switches**, **two Platforms**, and the connecting tracks.
+
+```text
+
+Entry
+  │
+ J1
+  │
+ SW1 ─────────► J2 ─────────► Exit
+  │
+  ▼
+ SW2
+ ├────────► Platform1
+ └────────► Platform2
+                  
+```
+
+### Switch Configuration
+
+| Switch | Normal Position | Reverse Position |
+|---------|-----------------|------------------|
+| **SW1** | J2 (towards Exit) | SW2 |
+| **SW2** | Platform 1 | Platform 2 |
+
+During route establishment, the **Interlocking** module automatically configures the switches according to the selected destination before allowing train movement.
+
+---
+
+# 🔄 System Workflow
+
+The simulator follows the workflow shown below when a train is dispatched.
+
+```text
+                 User
+                   │
+                   ▼
+          Select Destination
+                   │
+                   ▼
+        BFS Route Computation
+                   │
+                   ▼
+           Route Successfully Found
+                   │
+                   ▼
+      Interlocking Verification
+                   │
+         ┌─────────┴─────────┐
+         │                   │
+         ▼                   ▼
+   Route Rejected      Route Accepted
+                               │
+                               ▼
+                    Configure Switches
+                               │
+                               ▼
+                         Lock Tracks
+                               │
+                               ▼
+                       Dispatch Train
+                               │
+                               ▼
+                  Simulate Train Movement
+                               │
+                               ▼
+                         Release Route
+                               │
+                               ▼
+                           End Simulation
+```
+
+The interlocking system ensures that a train is dispatched **only after** the route has been validated, switches have been correctly aligned, and all required tracks have been safely reserved.
