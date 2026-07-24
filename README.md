@@ -154,3 +154,87 @@ The simulator follows the workflow shown below when a train is dispatched.
 ```
 
 The interlocking system ensures that a train is dispatched **only after** the route has been validated, switches have been correctly aligned, and all required tracks have been safely reserved.
+
+---
+
+## 🧩 Object-Oriented Design
+
+The project is built using Object-Oriented Programming principles to achieve modularity, maintainability, and extensibility.
+
+| OOP Concept | Implementation |
+|-------------|----------------|
+| **Encapsulation** | Each class manages its own state and behavior through private data members and public member functions (e.g., `Track`, `Train`, `Switch`). |
+| **Inheritance** | `Entry`, `Exit`, `Junction`, `Platform`, and `Switch` inherit from the common `RailwayNode` base class. |
+| **Polymorphism** | The simulator works with `RailwayNode*` pointers, allowing different railway node types to be handled uniformly. |
+| **Composition** | `Station` owns a `RailwayGraph`, `RailwayGraph` contains railway nodes and tracks, and `Route` stores the sequence of nodes traversed by a train. |
+| **Abstraction** | High-level classes such as `PathFinder`, `Interlocking`, and `Simulator` expose simple interfaces while hiding implementation details. |
+
+---
+
+## 🧠 Algorithms & Techniques
+
+The simulator combines graph algorithms with railway domain logic to establish safe train routes.
+
+| Algorithm / Technique | Purpose |
+|-----------------------|---------|
+| **Breadth-First Search (BFS)** | Computes the shortest valid route between two railway nodes. |
+| **Graph Representation** | Models the railway station as a network of interconnected nodes and tracks. |
+| **Route Validation** | Ensures all tracks on the selected route are available before establishing it. |
+| **Track Locking** | Prevents conflicting train movements by reserving tracks for an active route. |
+| **Switch Configuration** | Automatically aligns switches according to the selected route. |
+
+---
+
+## 📂 Project Structure
+
+```text
+Railway-Interlocking-System/
+│
+├── include/
+│   ├── RailwayNode.hpp
+│   ├── Entry.hpp
+│   ├── Exit.hpp
+│   ├── Junction.hpp
+│   ├── Platform.hpp
+│   ├── Switch.hpp
+│   ├── Track.hpp
+│   ├── RailwayGraph.hpp
+│   ├── Route.hpp
+│   ├── PathFinder.hpp
+│   ├── Interlocking.hpp
+│   ├── Train.hpp
+│   ├── Station.hpp
+│   └── Simulator.hpp
+│
+├── src/
+│   ├── RailwayNode.cpp
+│   ├── Entry.cpp
+│   ├── Exit.cpp
+│   ├── Junction.cpp
+│   ├── Platform.cpp
+│   ├── Switch.cpp
+│   ├── Track.cpp
+│   ├── RailwayGraph.cpp
+│   ├── Route.cpp
+│   ├── PathFinder.cpp
+│   ├── Interlocking.cpp
+│   ├── Train.cpp
+│   ├── Station.cpp
+│   ├── Simulator.cpp
+│   └── main.cpp
+│
+├── .gitignore
+└── README.md
+```
+
+---
+
+## 🎯 Design Decisions
+
+Some key design decisions made during development:
+
+- A **graph-based representation** was chosen to naturally model railway infrastructure and simplify route computation.
+- **Breadth-First Search (BFS)** was selected as the routing algorithm because all track segments are treated with equal cost.
+- The **Interlocking** module is responsible only for route safety, switch alignment, and track locking.
+- A dedicated **Simulator** class coordinates user interaction without embedding application logic inside `main()`.
+---
